@@ -1,0 +1,52 @@
+In [60]:
+# Lasso Regression
+from sklearn.linear_model import Ridge
+ridge = Ridge(alpha=.3)
+In [61]:
+ridge.fit(x_train,y_train)
+Out[61]:
+Ridge(alpha=0.3, copy_X=True, fit_intercept=True, max_iter=None,
+      normalize=False, random_state=None, solver='auto', tol=0.001)
+In [62]:
+print ("Ridge model:", (ridge.coef_))
+Ridge model: [[-5.79623972e-06 -1.04398931e-02  3.08764853e-02 -3.72012688e-03
+   6.26806503e-02  5.52288877e-02  4.58329460e-03 -6.59001764e-03
+   2.94990976e-02  0.00000000e+00  1.41728228e-02 -5.86330337e-03
+   6.98084988e-02  1.48249994e-02  4.31122286e-02 -8.41694405e-03
+  -1.11553785e-02  1.45979501e-01  9.92139775e-02 -1.02772870e-02
+  -1.08533501e-02  5.99706908e-03 -2.35960144e-02  4.10382494e-02
+  -2.29963866e-02 -1.55695956e-03  1.62567843e-02  1.86789919e-02
+   1.25015832e-02  6.48348295e-03  2.37704990e-02  2.64646730e-02
+   1.57596475e-02 -3.19918443e-03 -6.01387993e-03  1.40891994e-02
+   9.06710035e-03 -2.35804117e-02 -1.23831873e-02  2.34845515e-03
+   1.59221006e-02  1.76984943e-02  3.56974266e-03  1.40372324e-01
+   2.69309504e-02 -4.08360261e-03  2.24461581e-01  5.00387536e-02
+   1.39776080e-02  2.64723021e-02  5.74738926e-03  5.36948593e-03
+  -3.14159226e-02  3.14036059e-02  3.98768248e-02  3.63638501e-02
+   1.03945131e-02  9.88417908e-03 -7.25996716e-03  1.52005021e-02
+   1.15746356e-02  6.01911633e-02  2.32657308e-03  6.53475603e-02
+  -3.64130249e-03  1.39443292e-02  2.45486911e-02  1.27820397e-02
+   1.08750382e-02  2.32940941e-02  5.19685961e-02  8.15155971e-02
+  -1.67355108e-01  1.18543144e-02  9.26843450e-03  3.21571236e-02
+  -6.07451840e-03 -4.71893831e-03  6.94103796e-03  2.61012819e-02
+   1.98964804e-03  1.08838785e-02  4.01903881e-02]]
+In [63]:
+print("Ridge Regression Model Training Score: ",ridge.score(x_train, y_train))
+Ridge Regression Model Training Score:  0.9132955029490835
+In [90]:
+y_pred = ridge.predict(x_test)
+In [92]:
+# Evaluation Metrics for Ridge Regression
+from sklearn.metrics import mean_absolute_error
+print("MAE",mean_absolute_error(y_test,y_pred))
+print("MSE",mean_squared_error(y_test,y_pred))
+print("RMSE",np.sqrt(mean_squared_error(y_test,y_pred)))
+print("RMSE Logarithmic",np.log(np.sqrt(mean_squared_error(y_test,y_pred))))
+MAE 0.030377143567083837
+MSE 0.0018679774547265045
+RMSE 0.04322010475145224
+RMSE Logarithmic -3.141449504226273
+In [93]:
+r2 = r2_score(y_test,y_pred)
+print(r2)
+0.8928869817884563
