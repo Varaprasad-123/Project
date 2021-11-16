@@ -1,0 +1,21 @@
+
+
+
+
+ 
+
+
+#2 Splitting the data
+split = st.selectbox("Split the data",("Select","Yes","No"))
+if split == "Yes":
+    # Splitting the data
+    x = data.drop("SalePrice",axis = 1)
+    y = data["SalePrice"]
+    y.columns = ["Delete","SalePrice"]
+    y.drop(["Delete"],axis = 1,inplace = True)
+    x_train,x_test,y_train,y_test = train_test_split(x,y,random_state = 30,test_size = 0.33)
+    st.write("x_train shape",x_train.shape)
+    st.write("x_test shape",x_test.shape)
+    st.write("y_train shape",y_train.shape)
+    st.write("y_test shape",y_test.shape)
+
